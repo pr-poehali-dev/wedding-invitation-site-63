@@ -31,7 +31,7 @@ const Index = () => {
             </div>
             
             <h1 className="font-serif text-6xl md:text-8xl font-light text-foreground mb-6 tracking-wide">
-              Анна & Дмитрий
+              Виктория & Александр
             </h1>
             
             <div className="h-px w-32 mx-auto bg-gradient-to-r from-transparent via-primary to-transparent mb-8"></div>
@@ -53,8 +53,8 @@ const Index = () => {
                     <div className="flex items-center justify-center gap-2 text-primary mb-2">
                       <Icon name="Calendar" size={20} />
                     </div>
-                    <p className="font-serif text-3xl text-foreground">15 июня 2024</p>
-                    <p className="text-muted-foreground">Суббота, 16:00</p>
+                    <p className="font-serif text-3xl text-foreground">12 февраля 2026</p>
+                    <p className="text-muted-foreground">Четверг, 16:00</p>
                   </div>
 
                   <div className="space-y-3">
