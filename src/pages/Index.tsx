@@ -54,16 +54,16 @@ const Index = () => {
 
   const photos = [
     {
-      url: "https://cdn.poehali.dev/projects/ebff0e54-628b-41e0-b1b8-d856e6332884/files/640fbe89-03a3-4909-8446-1fd9cba44998.jpg",
-      alt: "Фото пары 1"
+      url: "https://cdn.poehali.dev/files/IMG_9317.jpeg",
+      alt: "Виктория и Александр"
     },
     {
-      url: "https://cdn.poehali.dev/projects/ebff0e54-628b-41e0-b1b8-d856e6332884/files/26c20596-cd8f-4426-a845-e3600459849f.jpg",
-      alt: "Фото пары 2"
+      url: "https://cdn.poehali.dev/files/IMG_9317.jpeg",
+      alt: "Виктория и Александр"
     },
     {
-      url: "https://cdn.poehali.dev/projects/ebff0e54-628b-41e0-b1b8-d856e6332884/files/e45dc602-1f86-4445-82ca-7647a7c45691.jpg",
-      alt: "Фото пары 3"
+      url: "https://cdn.poehali.dev/files/IMG_9317.jpeg",
+      alt: "Виктория и Александр"
     }
   ];
 
@@ -111,8 +111,8 @@ const Index = () => {
                     <div className="flex items-center justify-center gap-2 text-primary mb-2">
                       <Icon name="MapPin" size={20} />
                     </div>
-                    <p className="font-serif text-2xl text-foreground">Усадьба Архангельское</p>
-                    <p className="text-muted-foreground">Московская область, посёлок Архангельское</p>
+                    <p className="font-serif text-2xl text-foreground">с. Новолуговое</p>
+                    <p className="text-muted-foreground">г. Новосибирск, ул. Железнодорожная 10/1</p>
                   </div>
                 </div>
 
