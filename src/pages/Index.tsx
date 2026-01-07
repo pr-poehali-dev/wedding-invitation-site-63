@@ -1,7 +1,57 @@
 import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
+  const { toast } = useToast();
+  const [selectedGuest, setSelectedGuest] = useState("");
+  const [attendance, setAttendance] = useState<"yes" | "no" | "">("");
+
+  const guestList = {
+    parents_bride: [
+      { name: "Ольга", confirmed: false }
+    ],
+    parents_groom: [
+      { name: "Петр", confirmed: false },
+      { name: "Людмила", confirmed: false }
+    ],
+    guests: [
+      { name: "Евгения", confirmed: false },
+      { name: "Сергей", confirmed: false },
+      { name: "Алена", confirmed: false },
+      { name: "Александр", confirmed: false },
+      { name: "Лидия", confirmed: false },
+      { name: "Никита", confirmed: false },
+      { name: "Елизавета", confirmed: false },
+      { name: "Артем", confirmed: false },
+      { name: "Андрей", confirmed: false },
+      { name: "Оксана", confirmed: false },
+      { name: "Сергей", confirmed: false }
+    ]
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!selectedGuest || !attendance) {
+      toast({
+        title: "Ошибка",
+        description: "Пожалуйста, выберите имя и подтвердите присутствие",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    toast({
+      title: "Спасибо!",
+      description: `${selectedGuest}, ваш ответ записан. ${attendance === "yes" ? "Ждём вас на празднике!" : "Будем скучать!"}`,
+    });
+    
+    setSelectedGuest("");
+    setAttendance("");
+  };
+
   const photos = [
     {
       url: "https://cdn.poehali.dev/projects/ebff0e54-628b-41e0-b1b8-d856e6332884/files/640fbe89-03a3-4909-8446-1fd9cba44998.jpg",
@@ -116,6 +166,94 @@ const Index = () => {
         </section>
 
         <section className="py-20 px-4 bg-gradient-to-b from-background to-primary/5">
+          <div className="max-w-4xl mx-auto animate-fade-in">
+            <div className="text-center mb-12">
+              <div className="inline-block mb-4">
+                <div className="text-primary text-4xl">✦</div>
+              </div>
+              <h2 className="font-serif text-5xl md:text-6xl font-light text-foreground mb-4">
+                Подтверждение присутствия
+              </h2>
+              <div className="h-px w-24 mx-auto bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+            </div>
+
+            <Card className="bg-card/80 backdrop-blur-sm border-primary/20 p-8 md:p-12 shadow-xl">
+              <form onSubmit={handleSubmit} className="space-y-8">
+                <div className="space-y-4">
+                  <label className="block text-center">
+                    <span className="font-serif text-2xl text-foreground mb-4 block">Выберите ваше имя</span>
+                    <select 
+                      value={selectedGuest}
+                      onChange={(e) => setSelectedGuest(e.target.value)}
+                      className="w-full max-w-md mx-auto block px-4 py-3 rounded-lg border border-primary/20 bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                    >
+                      <option value="">-- Выберите имя --</option>
+                      <optgroup label="Родители невесты">
+                        {guestList.parents_bride.map((guest, idx) => (
+                          <option key={`pb-${idx}`} value={guest.name}>{guest.name}</option>
+                        ))}
+                      </optgroup>
+                      <optgroup label="Родители жениха">
+                        {guestList.parents_groom.map((guest, idx) => (
+                          <option key={`pg-${idx}`} value={guest.name}>{guest.name}</option>
+                        ))}
+                      </optgroup>
+                      <optgroup label="Гости">
+                        {guestList.guests.map((guest, idx) => (
+                          <option key={`g-${idx}`} value={guest.name}>{guest.name}</option>
+                        ))}
+                      </optgroup>
+                    </select>
+                  </label>
+                </div>
+
+                <div className="space-y-4">
+                  <p className="font-serif text-2xl text-foreground text-center">Сможете ли вы присутствовать?</p>
+                  <div className="flex gap-4 justify-center">
+                    <Button
+                      type="button"
+                      onClick={() => setAttendance("yes")}
+                      variant={attendance === "yes" ? "default" : "outline"}
+                      className={`px-8 py-6 text-lg transition-all ${
+                        attendance === "yes" 
+                          ? "bg-primary text-primary-foreground shadow-lg scale-105" 
+                          : "border-primary/30 hover:border-primary"
+                      }`}
+                    >
+                      <Icon name="Check" size={20} className="mr-2" />
+                      Буду
+                    </Button>
+                    <Button
+                      type="button"
+                      onClick={() => setAttendance("no")}
+                      variant={attendance === "no" ? "default" : "outline"}
+                      className={`px-8 py-6 text-lg transition-all ${
+                        attendance === "no" 
+                          ? "bg-primary text-primary-foreground shadow-lg scale-105" 
+                          : "border-primary/30 hover:border-primary"
+                      }`}
+                    >
+                      <Icon name="X" size={20} className="mr-2" />
+                      Не смогу
+                    </Button>
+                  </div>
+                </div>
+
+                <div className="text-center pt-4">
+                  <Button 
+                    type="submit"
+                    size="lg"
+                    className="px-12 py-6 text-lg bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all"
+                  >
+                    Отправить
+                  </Button>
+                </div>
+              </form>
+            </Card>
+          </div>
+        </section>
+
+        <section className="py-20 px-4">
           <div className="max-w-3xl mx-auto text-center animate-fade-in">
             <div className="inline-block mb-6">
               <div className="text-primary text-4xl">✦</div>
