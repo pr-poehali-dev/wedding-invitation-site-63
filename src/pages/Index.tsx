@@ -52,20 +52,10 @@ const Index = () => {
     setAttendance("");
   };
 
-  const photos = [
-    {
-      url: "https://cdn.poehali.dev/files/IMG_9317.jpeg",
-      alt: "Виктория и Александр"
-    },
-    {
-      url: "https://cdn.poehali.dev/files/IMG_9317.jpeg",
-      alt: "Виктория и Александр"
-    },
-    {
-      url: "https://cdn.poehali.dev/files/IMG_9317.jpeg",
-      alt: "Виктория и Александр"
-    }
-  ];
+  const storyText = `Наша история началась с алой розы и моря в ночи.
+Мы прошли через звёздные обрывы, разлуку и возвращение — и нашли в себе смелость выбрать «навсегда».
+Это не конец сказки.
+Это первая запятая в самом долгом и счастливом предложении нашей жизни.`;
 
   return (
     <div className="min-h-screen bg-background">
@@ -127,7 +117,7 @@ const Index = () => {
         </section>
 
         <section className="py-20 px-4">
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-5xl mx-auto">
             <div className="text-center mb-16 animate-fade-in">
               <div className="inline-block mb-4">
                 <div className="text-primary text-4xl">✦</div>
@@ -138,29 +128,32 @@ const Index = () => {
               <div className="h-px w-24 mx-auto bg-gradient-to-r from-transparent via-primary to-transparent"></div>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-6">
-              {photos.map((photo, index) => (
-                <div 
-                  key={index} 
-                  className="group relative overflow-hidden rounded-lg shadow-lg animate-scale-in hover:shadow-2xl transition-all duration-300"
-                  style={{ animationDelay: `${index * 150}ms` }}
-                >
-                  <div className="aspect-[3/4] relative">
-                    <img 
-                      src={photo.url} 
-                      alt={photo.alt}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  </div>
-                  <div className="absolute top-4 left-4 right-4">
-                    <div className="w-full h-px bg-primary/0 group-hover:bg-primary/60 transition-colors duration-300"></div>
-                  </div>
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <div className="w-full h-px bg-primary/0 group-hover:bg-primary/60 transition-colors duration-300"></div>
-                  </div>
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div className="relative overflow-hidden rounded-lg shadow-2xl animate-scale-in">
+                <div className="aspect-square relative">
+                  <img 
+                    src="https://cdn.poehali.dev/files/IMG_9317.jpeg"
+                    alt="Виктория и Александр"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 border-4 border-primary/10 rounded-lg"></div>
                 </div>
-              ))}
+              </div>
+
+              <div className="text-center md:text-left space-y-6 animate-fade-in" style={{ animationDelay: '300ms' }}>
+                <div className="space-y-4">
+                  {storyText.split('\n').map((line, index) => (
+                    <p key={index} className="text-lg md:text-xl text-foreground leading-relaxed">
+                      {line}
+                    </p>
+                  ))}
+                </div>
+                <div className="flex items-center justify-center md:justify-start gap-3 text-primary pt-4">
+                  <div className="h-px w-16 bg-primary/30"></div>
+                  <Icon name="Heart" size={16} className="animate-pulse" />
+                  <div className="h-px w-16 bg-primary/30"></div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
